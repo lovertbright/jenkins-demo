@@ -4,7 +4,7 @@ pipeline {
         stage('Clone') {
             steps {
                 echo "checking out the repo"
-                git 'https://github.com/edureka-devops/jenkins-demo.git'
+                git 'https://github.com/lovertbright/jenkins-demo.git'
             
             }
         }
@@ -27,7 +27,6 @@ pipeline {
             steps {
                 script {
                     echo "deployment"
-                    sh 'cp MavenProject/multi3/target/*.war /var/lib/tomcat8/webapps/'
                 }
             }
         }
@@ -47,7 +46,7 @@ pipeline {
             steps{
             parallel ( "JavaNcss Report":   
             {
-                git 'https://github.com/edureka-devops/jenkins-demo.git'
+                git 'https://github.com/lovertbright/jenkins-demo.git'
                 sh "cd javancss-master ; mvn test javancss:report ; pwd"
                   
             },
@@ -62,7 +61,7 @@ pipeline {
             }
          post{
                 success {
-                    emailext body: 'Successfully completed pipeline project with archiving the artifacts', subject: 'Pipeline was successfull', to: 'vathsala.hn22@gmail.com'
+                    emailext body: 'Successfully completed pipeline project with archiving the artifacts', subject: 'Pipeline was successfull', to: 'lovertbright20@gmail.com'
                 }
     }
 }
